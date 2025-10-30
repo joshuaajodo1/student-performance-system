@@ -1,0 +1,739 @@
+/* General Body and HTML Setup */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+    margin: 0;
+    padding: 0;
+    background-color: #f8faff; /* Lighter, subtle background */
+    color: #333;
+    display: flex; /* Keep flexbox for vertical centering on simple pages */
+    flex-direction: column; /* Arrange content vertically */
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Base Styles for Headings and Paragraphs */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50; /* Darker blue for headings */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: #007bff; /* Standard link blue */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Main Header (from base.html) - Enhanced for ETQ concept */
+.main-header {
+    background-color: #ffffff; /* White header */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+    padding: 15px 40px; /* More padding */
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e0e6ed; /* Subtle border */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Constrain width */
+    margin: 0 auto; /* Center navbar content */
+}
+
+.navbar-brand {
+    font-size: 1.8em; /* Slightly larger */
+    font-weight: 700;
+    color: #28a745; /* Green for the brand name */
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: #007bff; /* Blue icon */
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links a {
+    color: #555; /* Darker grey for links */
+    text-decoration: none;
+    padding: 8px 15px;
+    margin-left: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    font-weight: 500;
+}
+
+.navbar-links a:hover {
+    background-color: #f0f4f8; /* Light blue background on hover */
+    color: #007bff;
+}
+
+.navbar-links a i {
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    flex-grow: 1; /* Allows content to take up available vertical space */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top within the wrapper */
+    padding: 40px 20px; /* More padding for overall content */
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1200px; /* Max width for general content, similar to navbar */
+    margin: 0 auto;
+    /* Removed padding/box-shadow from here as cards/containers will have their own */
+}
+
+/* Card Styling - Enhanced for ETQ concept */
+.card, .form-card, .homepage-card { /* Apply to all card types */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* More prominent but soft shadow */
+    padding: 30px;
+    margin-bottom: 25px; /* Spacing between cards if multiple */
+    text-align: center; /* Center content in cards by default */
+    border: 1px solid #e0e6ed; /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .form-card:hover, .homepage-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card h2, .form-card h2, .homepage-card h2 {
+    color: #007bff; /* Blue for card headings */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card h2 i, .form-card h2 i, .homepage-card h2 i {
+    margin-right: 12px;
+    font-size: 1.1em;
+    color: #28a745; /* Green icon for card headings */
+}
+
+/* Form Group - Enhanced for ETQ concept */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Align labels/inputs to the left within the form-group */
+}
+
+.form-group label {
+    display: block; /* Label on its own line */
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a4a4a; /* Slightly darker label text */
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #c9d2db; /* Softer border color */
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff; /* Blue focus border */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue glow on focus */
+}
+
+/* Buttons - Enhanced for ETQ concept */
+button[type="submit"], .btn { /* Apply to all submit buttons and .btn class */
+    background-color: #28a745; /* Green submit button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* For anchor tags styled as buttons */
+}
+
+button[type="submit"]:hover, .btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+button[type="submit"] i, .btn i {
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background-color: #ffffff; /* White button */
+    color: #007bff; /* Blue text */
+    border: 2px solid #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #e0e6ed;
+    color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Error Messages */
+.error-message {
+    color: #dc3545; /* Red for errors */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.error-message i {
+    margin-right: 10px;
+    color: #dc3545;
+}
+
+/* Homepage specific containers (adapting existing .container concept) */
+.homepage-container {
+    display: flex; /* Use flex for centering and potential multiple cards */
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: center; /* Center cards */
+    gap: 30px; /* Space between cards */
+    width: 100%; /* Take full width of main-content */
+    max-width: 900px; /* Limit overall width of homepage cards area */
+    margin: 0 auto;
+}
+
+/* Hero Section (New addition for homepage) */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(40, 167, 69, 0.9)), url("{% static 'performance_monitoring/images/hero-bg.jpg' %}") no-repeat center center/cover;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    overflow: hidden; /* Ensure content stays within bounds if background is complex */
+    position: relative; /* For background overlay */
+}
+
+/* Placeholder for a hero background image - you would need to create this image or remove the url() */
+/* If you don't have 'hero-bg.jpg', the gradient will still provide a nice background. */
+/* Example for hero-bg.jpg: a blurred image of students, a university campus, or abstract patterns */
+
+
+.hero-section h1 {
+    font-size: 3.5em; /* Larger, impactful heading */
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+/* Department Dashboard Table Styles - Refined */
+.department-dashboard table {
+    width: 100%;
+    border-collapse: separate; /* Allows for border-spacing and rounded corners */
+    border-spacing: 0;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for table */
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+
+.department-dashboard th, .department-dashboard td {
+    padding: 15px; /* More padding */
+    text-align: left;
+    border-bottom: 1px solid #e0e6ed; /* Lighter border */
+    border-right: 1px solid #e0e6ed; /* Add right border for grid effect */
+}
+
+.department-dashboard th:last-child, .department-dashboard td:last-child {
+    border-right: none; /* No right border on last column */
+}
+
+.department-dashboard thead th {
+    background-color: #007bff; /* Blue header */
+    color: white;
+    font-weight: 600;
+    font-size: 0.95em;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Stay above scrolling content */
+}
+
+.department-dashboard tbody tr:nth-child(even) {
+    background-color: #f6f9fc; /* Very light blue for even rows */
+}
+
+.department-dashboard tbody tr:hover {
+    background-color: #e0f0ff; /* Lighter blue on hover */
+    cursor: pointer;
+}
+
+.department-dashboard td:first-child {
+    font-weight: 600;
+    color: #2c3e50; /* Darker name */
+}
+
+.action-links a {
+    color: #28a745; /* Green for action links */
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.action-links a:hover {
+    color: #1e7e34;
+    text-decoration: underline;
+}
+
+.action-links a i {
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+/* No Students Message */
+.department-dashboard tbody tr td[colspan="7"] {
+    font-style: italic;
+    color: #777;
+    padding: 20px;
+    text-align: center !important;
+}
+
+.department-dashboard tbody tr td[colspan="7"] i {
+    margin-right: 10px;
+    color: #777;
+}
+
+/* Top Info Section for Department Dashboard */
+.top-info {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.top-info h1 {
+    margin: 0;
+    font-size: 2.2em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-info h1 i {
+    margin-right: 15px;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dashboard-section h3 {
+    color: #2c3e50; /* Dark blue for sub-headings */
+    font-size: 1.6em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #e0e6ed;
+    padding-bottom: 10px;
+}
+
+.dashboard-section h3 i {
+    margin-right: 15px;
+    color: #28a745; /* Green icon for sub-headings */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .navbar-links {
+        margin-top: 15px;
+        width: 100%;
+        display: flex; /* Ensure links spread out */
+        flex-wrap: wrap; /* Allow links to wrap */
+        justify-content: center; /* Center links */
+    }
+    .navbar-links a {
+        margin: 5px 10px;
+    }
+
+    .hero-section {
+        padding: 80px 15px;
+    }
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero-buttons .btn {
+        width: 80%; /* Make buttons take more width */
+        margin: 0 auto;
+    }
+
+    .overall-performance-report {
+        grid-template-columns: 1fr; /* Stack performance cards */
+    }
+
+    .course-performance-glance {
+        grid-template-columns: 1fr; /* Stack course cards */
+    }
+
+    .student-details-report {
+        flex-direction: column; /* Stack student details vertically */
+    }
+
+    .department-dashboard table, .report-table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling for tables */
+        white-space: nowrap; /* Prevent content from wrapping inside cells */
+    }
+    .department-dashboard thead, .department-dashboard tbody, .department-dashboard th, .department-dashboard td, .department-dashboard tr {
+        display: table-row; /* Ensure table structure is maintained for scrolling */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Main Content */
+    .content-wrapper {
+        padding: 20px 15px; /* Reduce overall padding */
+    }
+
+    /* Cards */
+    .card, .form-card, .homepage-card {
+        padding: 25px; /* Smaller padding */
+    }
+    .card h2, .form-card h2, .homepage-card h2 {
+        font-size: 1.5em;
+    }
+    .card h2 i, .form-card h2 i, .homepage-card h2 i {
+        font-size: 1em;
+    }
+
+    /* Forms */
+    .form-group label {
+        font-size: 0.9em;
+    }
+    .form-group input, .form-group select {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+    button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    button[type="submit"] i {
+        margin-right: 5px;
+    }
+
+    /* Hero Section */
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+}
+
+/* Student Report Specific Styles (moved from inline to main CSS) */
+/* (Ensure these are correctly merged, as they were also inline in the HTML) */
+
+.report-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.report-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e6ed; /* Consistent border */
+}
+
+.report-header h1 {
+    color: #28a745;
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.report-header p {
+    color: #555;
+    font-size: 1.1em;
+}
+
+.student-details-report {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e6ed; /* Adjusted for consistency */
+}
+
+.student-details-report p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.student-details-report p strong {
+    color: #007bff;
+}
+
+.section-title {
+    color: #28a745;
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e6ed; /* Consistent border */
+    padding-bottom: 8px;
+}
+
+.overall-performance-report {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.performance-card-report {
+    background-color: #f8faff; /* Lighter background */
+    border: 1px solid #e0e6ed; /* Consistent border */
+    border-radius: 8px; /* Consistent border-radius */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.performance-card-report h3 {
+    color: #555;
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.performance-card-report .value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.cgpa-card-report .value { color: #28a745; } /* Green */
+.attendance-card-report .value { color: #ffc107; } /* Orange */
+.ca-card-report .value { color: #17a2b8; } /* Teal */
+.exam-card-report .value { color: #6f42c1; } /* Purple */
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden; /* For border-radius on table */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.report-table th, .report-table td {
+    border: 1px solid #e0e6ed; /* Consistent border */
+    padding: 12px; /* Slightly more padding */
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.report-table th {
+    background-color: #007bff; /* Blue header */
+    font-weight: bold;
+    color: white; /* White text */
+    text-align: center;
+}
+
+.report-table tbody tr:nth-child(even) {
+    background-color: #f6f9fc; /* Very light blue for even rows */
+}
+
+.report-table tbody tr:hover {
+    background-color: #e0f0ff; /* Lighter blue on hover */
+}
+
+/* NEW STYLES FOR PROGRESS BARS */
+.course-performance-glance {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.course-card {
+    background-color: #fff;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Adjusted shadow */
+}
+
+.course-card h4 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e6ed; /* Consistent border */
+    padding-bottom: 10px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #e9ecef; /* Lighter background for empty bar */
+    border-radius: 5px;
+    height: 18px; /* Slightly taller */
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    text-align: center;
+    color: white;
+    line-height: 18px;
+    font-size: 0.75em; /* Slightly larger font */
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px; /* Apply border-radius to the bar itself */
+}
+
+.progress-bar.score {
+    background-color: #28a745; /* Green for scores */
+}
+.progress-bar.attendance {
+    background-color: #17a2b8; /* Teal for attendance */
+}
+
+/* Conditional formatting for table cells */
+.grade-A { background-color: #e6ffed; color: #155724; } /* Lighter green for A */
+.grade-B { background-color: #e0f2f7; color: #0c5460; } /* Lighter blue for B */
+.grade-C { background-color: #fff8e6; color: #856404; } /* Lighter yellow for C */
+.grade-D { background-color: #ffe6e6; color: #721c24; } /* Lighter red for D */
+.grade-F { background-color: #ffd6d6; color: #721c24; } /* More vibrant red for F */
+
+.score-high { background-color: #e6ffed; color: #155724; } /* 70-100% */
+.score-medium { background-color: #fff8e6; color: #856404; } /* 50-69% */
+.score-low { background-color: #ffe6e6; color: #721c24; } /* <50% */
+
+/* Print Specific Styles */
+@media print {
+    body {
+        background-color: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .report-container {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+    .report-table th, .report-table td {
+        border-color: #ccc !important;
+    }
+    .report-header, .section-title, .student-details-report {
+        border-bottom: 1px solid #ccc !important;
+    }
+    .report-header h1 {
+        font-size: 2em !important;
+    }
+    .overall-performance-report, .course-performance-glance, .report-table {
+        page-break-inside: avoid !important;
+    }
+    .report-table {
+        page-break-after: auto !important;
+    }
+    h1, h2, h3, h4, p {
+        text-align: left !important;
+    }
+}

@@ -1,0 +1,468 @@
+/* General Reset and Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+    background: linear-gradient(to bottom right, #eef2f8, #d9e7f7); /* Subtle blue gradient background for the entire body */
+    margin: 0;
+    padding: 0;
+    display: flex; /* For overall layout of sidebar + content */
+    min-height: 100vh; /* Ensure body takes full height */
+    color: #333; /* Standard text color */
+}
+
+.main-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* --- Top Navigation Bar (Header of the entire site) --- */
+/* Assuming this is outside the .main-wrapper, usually in base.html */
+.top-navbar {
+    background: linear-gradient(90deg, #4CAF50, #8BC34A); /* Green gradient for the top bar */
+    padding: 15px 30px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-navbar .system-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.top-navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.top-navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #FFEB3B; /* Yellow underline */
+    transition: width 0.3s ease-in-out;
+}
+
+.top-navbar .nav-links a:hover::after,
+.top-navbar .nav-links a.active::after {
+    width: 100%;
+}
+
+.top-navbar .nav-links a:hover {
+    color: #FFEB3B; /* Yellow on hover */
+}
+
+
+/* Sidebar Styles - Enhanced with Gradient */
+#sidebar {
+    background: linear-gradient(180deg, #3498db, #2980b9); /* Vibrant blue gradient */
+    padding-top: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    width: 250px; /* Fixed width for sidebar */
+    flex-shrink: 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2); /* Stronger shadow for depth */
+    transition: width 0.3s ease; /* Smooth transition for potential future collapse */
+}
+
+.sidebar-header {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* White border for header */
+}
+
+.sidebar-header h3 {
+    color: #ffffff; /* White text for header */
+    font-size: 1.6rem; /* Slightly larger */
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+#sidebar .nav-link {
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8); /* Lighter white for links */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease, border-left 0.3s ease;
+    font-weight: 500;
+}
+
+#sidebar .nav-link i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6); /* Slightly faded icon */
+}
+
+#sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white on hover */
+    color: #ffffff; /* Pure white on hover */
+    border-left: 4px solid #f39c12; /* Orange highlight on hover */
+}
+
+#sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.25); /* More opaque white for active link */
+    border-left: 4px solid #f39c12; /* Vibrant orange highlight */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#sidebar .nav-link.active i {
+    color: #f39c12; /* Orange icon for active link */
+}
+
+.sidebar-heading {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5); /* Faded white for headings */
+    padding: 10px 20px 5px;
+    margin-top: 25px;
+    letter-spacing: 1px; /* More prominent letter spacing */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+/* Main Content Area */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: transparent; /* Let body gradient show through */
+}
+
+/* Homepage Specific Styles */
+.homepage-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(45deg, #a8dadc, #457b9d); /* Blue-green gradient */
+    color: #fff;
+    padding: 60px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px; /* Pill shape */
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn-primary {
+    background: linear-gradient(45deg, #2ecc71, #27ae60); /* Green gradient */
+    color: #fff;
+    border: none;
+}
+
+.hero-buttons .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+}
+
+.hero-buttons .btn-secondary {
+    background: linear-gradient(45deg, #f39c12, #e67e22); /* Orange gradient */
+    color: #fff;
+    border: none;
+}
+
+.hero-buttons .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #e67e22, #f39c12);
+}
+
+.feature-cards-section {
+    margin-top: 50px;
+}
+
+.feature-cards-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.feature-cards-section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 2px;
+}
+
+.feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 5px solid; /* For colored border top */
+}
+
+.feature-card:nth-child(1) { border-top-color: #3498db; } /* Blue for first card */
+.feature-card:nth-child(2) { border-top-color: #2ecc71; } /* Green for second card */
+.feature-card:nth-child(3) { border-top-color: #f39c12; } /* Orange for third card */
+
+
+.feature-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.feature-card .icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #3498db; /* Default icon color */
+    transition: color 0.3s ease;
+}
+.feature-card:nth-child(1) .icon { color: #3498db; } /* Blue icon */
+.feature-card:nth-child(2) .icon { color: #2ecc71; } /* Green icon */
+.feature-card:nth-child(3) .icon { color: #f39c12; } /* Orange icon */
+
+
+.feature-card h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* --- Existing styles adapted for the new theme --- */
+
+/* Headers and Sections within Main Content (general, not homepage specific) */
+.dashboard-header, .report-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3498db; /* Solid blue border for main headers */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #ffffff; /* White background for header area */
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Soft shadow */
+}
+
+.dashboard-header h1, .report-header h1 {
+    font-size: 2.5rem; /* Larger, more impactful */
+    color: #2c3e50; /* Dark blue-grey for main titles */
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.dashboard-header p, .report-header p {
+    color: #555;
+    margin-bottom: 0;
+    margin-left: 20px;
+    font-size: 1.1rem;
+}
+
+.report-header h2 {
+    font-size: 1.8rem;
+    color: #34495e; /* Darker blue-grey */
+    margin-bottom: 15px;
+    flex-basis: 100%;
+}
+
+.button-group.no-print {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons - Primary using Gradient */
+.btn { /* General button styling */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none; /* Ensure links look like buttons */
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #2ecc71, #27ae60); /* Green gradient */
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #27ae60, #2ecc71); /* Reverse gradient on hover */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #95a5a6; /* Softer grey */
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background-color: #3498db; /* Blue for info buttons */
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.btn-info:hover {
+    background-color: #2980b9;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* Cards and Sections */
+.dashboard-overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px; /* Increased gap */
+    margin-bottom: 35px; /* Increased margin */
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px; /* Slightly more rounded */
+    padding: 25px; /* More padding */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* More prominent shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Stronger lift */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* More intense shadow on hover */
+}
+
+.card h3, .card h4 {
+    font-size: 1.35rem; /* Slightly larger */
+    color: #34495e; /* Dark blue-grey */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.metric {
+    font-size: 2.8rem; /* Much larger for impact */
+    font-weight: bold;
+    color: #f39c12; /* Vibrant orange for metrics */
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle text shadow */
+}
+
+.semester-card {
+    margin-bottom: 30px;
+}
+
+.semester-card .card-header {
+    background: linear-gradient(90deg, #ecf0f1, #bdc3c7); /* Light grey gradient for sub-headers */
+    border-bottom: 1px solid #c8d2da;
+    padding: 15px 25px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.05); /* Inner shadow for header effect */
+}
+
+.semester-card .card-header h3, .semester-card .card-header h4 {
+    font-size: 1.4rem;
+    color: #34495e;
+}
+
+.semester-summary span {
+    margin-left: 25px; /* More spacing */
+    font-size: 1rem;
+    color: #666;
+}
+
+.semester-summary strong {
+    color: #3498db; /* Blue for semester summary numbers */
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Tables */

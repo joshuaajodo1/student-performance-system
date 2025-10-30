@@ -1,0 +1,109 @@
+{% extends "performance_monitoring/base.html" %}
+
+{% block title %}Department Dashboard: {{ department.name }}{% endblock %}
+
+{% block content %}
+<div class="content-card">
+    <h1>Department Dashboard: {{ department.name }}</h1>
+    <p class="text-muted">Overview of academic performance and management within your department.</p>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="data-box total">
+                <h3>Total Students</h3>
+                <p>{{ total_students_in_dept }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="data-box total">
+                <h3>Total Courses Offered</h3>
+                <p>{{ total_courses_in_dept }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="data-box cgpa">
+                <h3>Avg. Department CGPA</h3>
+                <p class="{% if avg_department_cgpa >= 4.0 %}gpa-excellent{% elif avg_department_cgpa >= 3.0 %}gpa-good{% else %}gpa-poor{% endif %}">
+                    {{ avg_department_cgpa|floatformat:2 }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-card mt-4 p-0">
+        <h2 style="padding: 20px 30px; margin-bottom: 0; border-bottom: 1px solid #eee;">Students in {{ department.name }}</h2>
+        
+        <div class="p-3 d-flex">
+            <input type="text" id="studentSearch" class="form-control" placeholder="Search by Matriculation No. or Name..." onkeyup="filterStudents()" style="border-radius: 8px;">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-modern mb-0" id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Matriculation No.</th>
+                        <th>Student Name</th>
+                        <th>Overall CGPA</th>
+                        <th>Average Attendance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in students_data %}
+                    <tr>
+                        <td class="student-id">
+                            <a href="{% url 'student_performance_report' student_id=data.student.student_id %}">{{ data.student.student_id }}</a>
+                        </td>
+                        <td class="student-name">{{ data.student.name }}</td>
+                        <td class="{% if data.overall_cgpa >= 4.0 %}gpa-excellent{% elif data.overall_cgpa >= 3.0 %}gpa-good{% else %}gpa-poor{% endif %}">
+                            {{ data.overall_cgpa|floatformat:2 }}
+                        </td>
+                        <td>{{ data.average_attendance|floatformat:2 }}%</td>
+                        <td>
+                            <a href="{% url 'student_performance_report' student_id=data.student.student_id %}" class="btn btn-sm btn-primary">View Report</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="content-card mt-4">
+        <h2>STUDENT PERFORMANCE OF {{ department.name }} STUDENTS</h2>
+        <a href="{% url 'admin:performance_monitoring_course_add' %}" class="btn btn-primary mb-3">Add New Course</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-modern">
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function filterStudents() {
+        const input = document.getElementById('studentSearch');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('studentTable');
+        const tr = table.getElementsByTagName('tr');
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (let i = 1; i < tr.length; i++) { // Start at 1 to skip the header row
+            const matricCell = tr[i].getElementsByClassName('student-id')[0];
+            const nameCell = tr[i].getElementsByClassName('student-name')[0];
+            
+            if (matricCell || nameCell) {
+                const matricText = matricCell ? matricCell.textContent.toUpperCase() : '';
+                const nameText = nameCell ? nameCell.textContent.toUpperCase() : '';
+                
+                if (matricText.indexOf(filter) > -1 || nameText.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+</script>
+{% endblock %}

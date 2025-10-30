@@ -1,0 +1,192 @@
+{% extends "performance_monitoring/base.html" %}
+
+{% block title %}Student Dashboard: {{ student.name }}{% endblock %}
+
+{% block content %}
+<div class="content-card">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Student Dashboard</h1>
+    </div>
+    
+    <h2 style="color: var(--primary-color);">Welcome, {{ student.name }} ({{ student.student_id }}) - {{ student.department.name }}</h2>
+    
+    <hr>
+    
+    <h3 class="mt-4">Overall Summary</h3>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="data-box cgpa">
+                <h3>Overall CGPA</h3>
+                <p class="{% if overall_cgpa >= 4.0 %}gpa-excellent{% elif overall_cgpa >= 3.0 %}gpa-good{% else %}gpa-poor{% endif %}">
+                    {{ overall_cgpa|floatformat:2 }}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="data-box attendance">
+                <h3>Avg. Attendance</h3>
+                <p class="{% if overall_average_attendance >= 75 %}gpa-excellent{% elif overall_average_attendance >= 60 %}gpa-good{% else %}gpa-poor{% endif %}">
+                    {{ overall_average_attendance|floatformat:2 }}%
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="data-box total">
+                <h3>Total Courses Taken</h3>
+                <p style="color: var(--neutral-color);">{{ total_unique_courses }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-card mb-4" style="padding: 20px; border: 2px solid var(--secondary-color);">
+        <h3 class="mb-3" style="color: var(--primary-color);">Filter Semester Performance</h3>
+        <select id="semester-filter" class="form-select w-100">
+            <option value="all">View All Semesters</option>
+            {% for semester, data in semester_data.items %}
+                <option value="semester-{{ forloop.counter }}">{{ semester.name }} {{ semester.academic_year }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <h3 class="mt-4">Semester-wise Detailed Performance</h3>
+    <div id="semester-details">
+        {% for semester, data in semester_data.items %}
+        <div class="semester-card content-card mb-4 p-0" id="semester-{{ forloop.counter }}">
+            <div style="background-color: var(--primary-color); color: var(--text-light); padding: 15px 30px; border-radius: 12px 12px 0 0;">
+                <h4 class="mb-0">
+                    {{ semester.name }} {{ semester.academic_year }}
+                    <small class="ms-3" style="font-size: 0.9rem; font-weight: 400;">
+                        CGPA: <span class="{% if data.cgpa >= 4.0 %}gpa-excellent{% elif data.cgpa >= 3.0 %}gpa-good{% else %}gpa-poor{% endif %}" style="color: var(--secondary-color);">{{ data.cgpa|floatformat:2 }}</span> |
+                        Avg. Attendance: <span style="color: var(--secondary-color);">{{ data.average_attendance|floatformat:2 }}%</span>
+                    </small>
+                </h4>
+            </div>
+            
+            <div class="table-responsive p-3">
+                <table class="table table-sm table-striped table-hover table-modern mb-0">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Title</th>
+                            <th>Credit Units</th>
+                            <th>Total Score</th>
+                            <th>Grade</th>
+                            <th>Attendance %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enrollment in data.enrollments %}
+                        <tr>
+                            <td style="width: 15%; font-weight: 600;">{{ enrollment.course.course_code }}</td>
+                            <td style="width: 35%;">{{ enrollment.course.course_title }}</td>
+                            <td style="width: 10%; text-align: center;">{{ enrollment.course.credit_unit }}</td>
+                            <td style="width: 10%; text-align: center;">{{ enrollment.total_score|default:"N/A" }}</td>
+                            <td style="width: 10%; text-align: center;" class="grade-{{ enrollment.grade }}">
+                                {{ enrollment.grade }}
+                            </td>
+                            <td style="width: 20%; text-align: center;">{{ enrollment.attendance_percentage|floatformat:2 }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3 class="mt-5" style="color: var(--primary-color);">Course Performance Trends</h3>
+    <div class="content-card">
+        <canvas id="performanceChart"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script>
+    // --- Charting Logic ---
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fetch colors from CSS for Chart.js consistency
+        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+        const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color').trim();
+
+        // **NOTE:** You need to ensure 'course_performance_data_json' is available in the context 
+        // passed from your Django view (views.py) to this student_dashboard.html template.
+        // I'm assuming you have a variable named 'course_performance_data_json' available here.
+        const dataJson = JSON.parse('{{ course_performance_data_json|safe }}');
+        
+        if (dataJson.length > 0) {
+            const courseLabels = dataJson.map(item => item.course_code);
+            const scores = dataJson.map(item => item.total_score);
+            const attendance = dataJson.map(item => item.attendance_percentage);
+
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: courseLabels,
+                    datasets: [
+                        {
+                            label: 'Total Score (Max 100)',
+                            data: scores,
+                            backgroundColor: primaryColor,
+                            borderColor: primaryColor,
+                            borderWidth: 1,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Attendance %',
+                            data: attendance,
+                            backgroundColor: secondaryColor,
+                            borderColor: secondaryColor,
+                            borderWidth: 1,
+                            type: 'line', 
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'Score', color: primaryColor },
+                            max: 100,
+                            min: 0,
+                            ticks: { color: primaryColor }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: 'Attendance (%)', color: secondaryColor },
+                            grid: { drawOnChartArea: false },
+                            max: 100,
+                            min: 0,
+                            ticks: { color: secondaryColor }
+                        }
+                    }
+                }
+            });
+        }
+    });
+
+    // --- Filtering Logic ---
+    document.getElementById('semester-filter').addEventListener('change', function() {
+        const selectedId = this.value;
+        const semesterCards = document.querySelectorAll('.semester-card');
+
+        semesterCards.forEach(card => {
+            if (selectedId === 'all') {
+                card.style.display = 'block'; 
+            } else if (card.id === selectedId) {
+                card.style.display = 'block'; 
+            } else {
+                card.style.display = 'none'; 
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "performance_monitoring/base.html" %}
+{% load static %}
+
+{% block title %}Academic Excellence Monitor{% endblock %}
+
+{% block content %}
+
+<div class="hero-section text-center mb-5 p-5">
+    <h1 class="display-4 fw-bold mb-3" style="color: var(--text-light); font-size: 2.8rem;">
+        STUDENT PERFORMANCE MONITORING SYSTEM
+    </h1>
+    <p class="lead mb-4" style="color: rgba(255, 255, 255, 0.9);">
+        A comprehensive system to monitor, analyze, and elevate student performance. Gain deep insights into grades, attendance, and overall academic progress across all levels.
+    </p>
+    
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="{% url 'student_login' %}" class="btn btn-success btn-lg">STUDENT LOGIN</a>
+        <a href="{% url 'admin_login' %}" class="btn btn-primary btn-lg">ADMIN LOGIN</a>
+        <a href="{% url 'admin_department_login' %}" class="btn btn-warning btn-lg">DEPARTMENT LOGIN</a>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    <div class="col">
+        <div class="content-card text-center p-4 h-100">
+            <i class="fas fa-chart-line fa-3x mb-3" style="color: var(--secondary-color);"></i>
+            <h3 class="fw-bold" style="color: var(--primary-color);">Performance Tracking</h3>
+            <p class="text-muted">
+                Students can access detailed, semester-wise reports, track their individual course grades, monitor attendance percentages, and visualize performance trends.
+            </p>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="content-card text-center p-4 h-100">
+            <i class="fas fa-university fa-3x mb-3" style="color: var(--secondary-color);"></i>
+            <h3 class="fw-bold" style="color: var(--primary-color);">Department Management</h3>
+            <p class="text-muted">
+                Department administrators can manage student records, update scores, register new courses, and generate comprehensive performance analytics for the entire department.
+            </p>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="content-card text-center p-4 h-100">
+            <i class="fas fa-cogs fa-3x mb-3" style="color: var(--secondary-color);"></i>
+            <h3 class="fw-bold" style="color: var(--primary-color);">System Administration</h3>
+            <p class="text-muted">
+                Centralized administration for managing system configurations, user accounts (Admin/Department), academic sessions, and ensuring overall data security and integrity.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

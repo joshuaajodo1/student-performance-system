@@ -1,0 +1,258 @@
+/* performance_monitoring/static/css/style.css - REFINED DARK & CARD DESIGN */
+
+/* --- Import Modern Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+    /* Enhanced Dark Theme Palette */
+    --primary-color: #4A148C; /* Deep Purple/Indigo - Primary Accent */
+    --secondary-color: #00BCD4; /* Vibrant Cyan - Highlight/Success */
+    --background-light: #F0F2F5; /* Soft Gray - Page Background */
+    --sidebar-bg: #1F2E49; /* Deep Navy - Darker and richer sidebar */
+    --content-bg: #FFFFFF; /* Pure White - Card Background */
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    --shadow-deep: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow for cards */
+    --border-radius-large: 12px;
+    
+    /* Semantic Colors */
+    --success-color: #4CAF50; /* Green */
+    --danger-color: #E91E63; /* Pink/Red for strong warning */
+    --neutral-color: #607D8B; /* Slate Gray */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* --- Layout Structure --- */
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar Styling (Darker Navy) --- */
+#sidebar-wrapper {
+    min-width: 250px;
+    background-color: var(--sidebar-bg);
+    color: var(--text-light);
+    transition: margin 0.3s ease-out;
+    padding-top: 20px;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 15px;
+}
+
+.list-group-item {
+    background-color: var(--sidebar-bg);
+    color: rgba(255, 255, 255, 0.85);
+    border: none;
+    padding: 15px 20px;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s, border-left 0.2s;
+    border-left: 5px solid transparent;
+    border-radius: 0;
+}
+
+.list-group-item i {
+    margin-right: 10px;
+}
+
+/* Pronounced Hover Effect on Sidebar */
+.list-group-item:hover, .list-group-item.active {
+    background-color: #293d61; /* Slightly lighter Navy */
+    color: var(--secondary-color);
+    border-left: 5px solid var(--secondary-color); /* Cyan indicator */
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 30px;
+}
+
+/* --- General Content Styling (Card Structures) --- */
+.content-card {
+    background: var(--content-bg);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-deep);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* --- Buttons and Forms --- */
+.btn-primary, .btn-success, .btn-warning, .btn-info {
+    border-radius: 50px;
+    padding: 10px 30px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #38106D; 
+    border-color: #38106D;
+}
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+.btn-success:hover {
+    background-color: #388E3C;
+    border-color: #388E3C;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 12px 15px;
+}
+
+/* --- Custom Data Cards (More pronounced lift) --- */
+.data-box {
+    text-align: center;
+    padding: 25px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-deep);
+    background: var(--content-bg);
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #eee;
+}
+
+.data-box:hover {
+    transform: translateY(-8px); /* Deeper lift */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+.data-box h3 {
+    font-size: 1.1rem;
+    color: var(--neutral-color);
+    margin-bottom: 5px;
+}
+
+.data-box p {
+    font-size: 2.8rem; /* Larger font */
+    font-weight: 800;
+    margin: 0;
+}
+
+/* Data Box Coloring */
+.data-box.cgpa p { color: var(--secondary-color); }
+.data-box.attendance p { color: var(--primary-color); }
+.data-box.total p { color: var(--neutral-color); }
+
+/* Performance Color Coding - Vibrant */
+.gpa-excellent, .grade-A { color: var(--success-color); font-weight: 700; }
+.gpa-good, .grade-B { color: var(--secondary-color); font-weight: 700; }
+.grade-C { color: #FFC107; } /* Yellow */
+.gpa-poor, .grade-D, .grade-E, .grade-F { color: var(--danger-color); font-weight: 700; }
+
+/* --- Tables --- */
+.table-modern {
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+}
+
+.table-modern thead th {
+    background-color: var(--primary-color); /* Dark header for tables */
+    color: var(--text-light);
+    font-weight: 700;
+    border: none;
+    padding: 15px;
+}
+
+.table-modern tbody tr:hover {
+    background-color: rgba(0, 188, 212, 0.1); /* Light Cyan hover */
+    cursor: pointer;
+}
+
+/* Homepage Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    padding: 80px 40px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-deep);
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+/* --- PRINT STYLES (Hide Sidebar, Show Content) --- */
+/* ------------------------------------------- */
+
+@media print {
+    /* 1. Hides the sidebar completely */
+    #sidebar-wrapper {
+        display: none !important;
+    }
+
+    /* 2. Ensures the main content takes up the full width */
+    #page-content-wrapper {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 0 !important; /* Remove padding for a cleaner print layout */
+    }
+
+    /* 3. Ensures the overall layout container adjusts */
+    #wrapper {
+        display: block !important;
+    }
+
+    /* 4. Improve card appearance for print (remove box-shadows that look messy in black/white) */
+    .content-card, .data-box {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+        page-break-inside: avoid; /* Prevents large elements from being split awkwardly */
+        margin-bottom: 15px; /* Add slight margin back for separation */
+    }
+    
+    /* Ensure tables don't get messy borders on print */
+    .table-responsive {
+        border: none !important;
+    }
+    .table-modern thead th, .table-modern tbody td {
+        border-color: #000 !important;
+    }
+
+    /* 5. Hide elements unnecessary for a physical report (buttons, filters) */
+    .btn, .form-select, hr, .d-flex.justify-content-between.align-items-center.mb-4 > div, .d-flex .btn {
+        display: none !important;
+    }
+    
+    /* Remove hover background that might print gray */
+    .table-modern tbody tr {
+        background-color: transparent !important;
+    }
+
+    /* 6. Ensure headings/text are black for better contrast on white paper */
+    h1, h2, h3, h4, p, table {
+        color: #000 !important; 
+    }
+    
+    /* Optional: Hide the primary color card header and use black text instead */
+    .semester-card > div:first-child {
+        background-color: #f8f9fa !important;
+        color: #000 !important;
+        border-bottom: 1px solid #ddd;
+        border-radius: 0 !important;
+        padding: 10px 15px !important;
+    }
+}

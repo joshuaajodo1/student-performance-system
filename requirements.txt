@@ -1,0 +1,8 @@
+Django==5.0.7
+gunicorn
+whitenoise
+psycopg2-binary
+dj-database-url
+crispy-forms
+crispy-bootstrap5
+django-widget-tweaks
